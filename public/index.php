@@ -1,5 +1,7 @@
 <?php
-
+// Define path to root directory
+defined('ROOT_PATH')
+|| define('ROOT_PATH', realpath(dirname(__FILE__) . '/..'));
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
@@ -16,6 +18,7 @@ set_include_path(implode(PATH_SEPARATOR, array(
 
 /** Zend_Application */
 require_once 'Zend/Application.php';
+require_once 'MyCache.php';
 
 // Create application, bootstrap, and run
 $application = new Zend_Application(

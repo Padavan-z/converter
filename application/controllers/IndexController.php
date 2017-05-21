@@ -5,12 +5,15 @@ class IndexController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        MyCache::getInstance();
     }
 
     public function indexAction()
     {
         // action body
+        $currency  = new Application_Model_Currency();
+        $this->view->defaultCurrency = $currency->defaultCurrency;
+        $this->view->currencyList = $currency ->currencyList;
     }
 
 
