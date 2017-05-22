@@ -25,8 +25,18 @@ class MyCache
             ];
             $backend = 'File';
 
+            $cacheDir = ROOT_PATH . DIRECTORY_SEPARATOR . 'tmp/sys_cache/';
+
+            if (!is_dir($cacheDir))
+            {
+                $oldMask = @umask(0);
+                mkdir($cacheDir, 0750, true);
+                chmod($cacheDir, 0750);
+                umask($oldMask);
+            }
+
             $backendOptions = [
-                'cache_dir' => ROOT_PATH . DIRECTORY_SEPARATOR . 'tmp/sys_cache/'
+                'cache_dir' => $cacheDir
             ];
 
             self::$_instance = Zend_Cache::factory(
